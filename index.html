@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>QUANTUM ZERO: The Last Encryption</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Orbitron:wght@600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="bg-grid" aria-hidden="true"></div>
+  <div class="bg-scanlines" aria-hidden="true"></div>
+
+  <div id="app" class="app-shell">
+    <!-- Top Utility Bar -->
+    <header class="top-bar">
+      <div class="brand" id="brandHomeBtn" title="Return to Main Menu">
+        <span class="brand-pulse"></span>
+        <span class="brand-title">QUANTUM ZERO</span>
+        <span class="brand-tag">2045 // PQC DEFENSE</span>
+      </div>
+
+      <div class="top-stats">
+        <div class="pill pill-cyan">
+          <span>SCORE</span>
+          <strong id="globalScore">0</strong>
+        </div>
+        <div class="pill pill-violet">
+          <span>RANK</span>
+          <strong id="globalRank">CADET</strong>
+        </div>
+        <button id="musicToggleBtn" class="icon-btn" type="button" aria-label="Toggle Synth Music">
+          MUSIC ON
+        </button>
+        <button id="soundToggleBtn" class="icon-btn" type="button" aria-label="Toggle Sound Effects">
+          SFX ON
+        </button>
+      </div>
+    </header>
+
+    <!-- SCREEN 1: MAIN MENU -->
+    <section id="screen-menu" class="screen active" aria-labelledby="menuHeading">
+      <div class="hero-card">
+        <p class="eyebrow">YEAR 2045 · DIGITAL CITY CONTROL CENTER</p>
+        <h1 id="menuHeading" class="hero-title">
+          QUANTUM <span class="accent-cyan">ZERO</span>
+          <span class="hero-subtitle">THE LAST ENCRYPTION</span>
+        </h1>
+        <p class="hero-copy">
+          A fault-tolerant quantum threat codenamed <strong>Q-CORE</strong> is targeting vulnerable public-key systems.
+          Pilot your shield drone, master post-quantum cryptography (PQC), and secure the city before future quantum capabilities break legacy ciphers.
+        </p>
+
+        <div class="menu-actions">
+          <button id="playBtn" class="btn btn-primary" type="button">PLAY MISSION</button>
+          <button id="continueBtn" class="btn btn-secondary" type="button">CONTINUE</button>
+          <button id="howToPlayBtn" class="btn btn-ghost" type="button">HOW TO PLAY</button>
+          <button id="resetSaveBtn" class="btn btn-danger-ghost" type="button">RESET SAVE</button>
+        </div>
+
+        <div class="intel-strip">
+          <div class="intel-item">
+            <span class="intel-label">THREAT REALITY</span>
+            <p>Shor's algorithm threatens RSA &amp; ECC on future fault-tolerant quantum machines—not today's noisy hardware.</p>
+          </div>
+          <div class="intel-item">
+            <span class="intel-label">PQC TOOLKIT</span>
+            <p>Deploy <strong>ML-KEM</strong> for key exchange and <strong>ML-DSA / SLH-DSA</strong> for digital signatures.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- How To Play Drawer -->
+      <div id="howToPlayPanel" class="info-drawer hidden">
+        <div class="drawer-header">
+          <h3>FIELD MANUAL &amp; CONTROLS</h3>
+          <button id="closeHowToPlayBtn" class="btn btn-small" type="button">CLOSE</button>
+        </div>
+        <ul class="manual-list">
+          <li><strong>Move Drone:</strong> <kbd>WASD</kbd> or <kbd>Arrow Keys</kbd> (or on-screen touch pad on mobile).</li>
+          <li><strong>Energy Shield:</strong> <kbd>Space</kbd> (or Shield button) for a brief defensive barrier against projectiles.</li>
+          <li><strong>Pause / Resume:</strong> <kbd>Esc</kbd> or Pause button during gameplay.</li>
+          <li><strong>Scoring:</strong> Data Packet <strong>+10</strong> · Quiz Correct <strong>+100</strong> · Mission Clear <strong>+250</strong> · No Damage Bonus <strong>+50</strong>.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- SCREEN 2: MISSION MAP -->
+    <section id="screen-map" class="screen" aria-labelledby="mapHeading">
+      <div class="screen-header">
+        <div>
+          <p class="eyebrow">SECTOR DEPLOYMENT</p>
+          <h2 id="mapHeading">DIGITAL CITY MISSION MAP</h2>
+        </div>
+        <div class="header-actions">
+          <span class="integrity-badge">CITY INTEGRITY: <strong id="cityIntegrityText">0%</strong></span>
+          <button id="backToMenuBtn" class="btn btn-ghost btn-small" type="button">MAIN MENU</button>
+        </div>
+      </div>
+
+      <div id="missionMapGrid" class="mission-grid"></div>
+    </section>
+
+    <!-- SCREEN 3: GAMEPLAY ARENA -->
+    <section id="screen-arena" class="screen" aria-label="Gameplay Arena">
+      <div class="hud-bar">
+        <div class="hud-group">
+          <span class="hud-mission" id="hudMissionTitle">MISSION 02</span>
+          <span class="hud-objective" id="hudObjective">Survive incoming quantum waves</span>
+        </div>
+        <div class="hud-metrics">
+          <div class="hud-box"><span>LIVES</span><strong id="hudLives">❤️❤️❤️</strong></div>
+          <div class="hud-box"><span>SCORE</span><strong id="hudScore">0</strong></div>
+          <div class="hud-box"><span>PROGRESS</span><strong id="hudProgress">0%</strong></div>
+          <div class="hud-box"><span>TIME</span><strong id="hudTimer">00:45</strong></div>
+          <button id="toggleArenaGuideBtn" class="btn btn-small btn-secondary" type="button">INSTRUCTIONS</button>
+          <button id="pauseBtn" class="btn btn-small btn-ghost" type="button">PAUSE</button>
+          <button id="quitMissionBtn" class="btn btn-small btn-danger-ghost" type="button">EXIT</button>
+        </div>
+      </div>
+
+      <!-- In-Game Instructions Panel -->
+      <div id="arenaInstructionsBox" class="arena-instructions">
+        <div class="arena-inst-header">
+          <strong>IN-GAME INSTRUCTIONS</strong>
+          <span id="arenaModeTip">Use WASD / Arrows to move, Space for Energy Shield, and collect green packets.</span>
+        </div>
+        <div class="arena-inst-grid">
+          <div><kbd>WASD</kbd> / <kbd>Arrows</kbd> — Steer your drone</div>
+          <div><kbd>Space</kbd> — Activate temporary shield</div>
+          <div><kbd>Esc</kbd> — Pause simulation</div>
+          <div><strong>Hearts</strong> — Remaining drone integrity (3 max)</div>
+        </div>
+      </div>
+
+      <div class="arena-wrapper">
+        <canvas id="gameCanvas" width="900" height="500"></canvas>
+
+        <!-- Interactive Puzzle / Strategy Overlay (Missions 03 & 04) -->
+        <div id="puzzleOverlay" class="puzzle-panel hidden"></div>
+
+        <!-- Pause Overlay -->
+        <div id="pauseOverlay" class="overlay-card hidden">
+          <h3>SIMULATION PAUSED</h3>
+          <p>System clock suspended. Review controls or resume defense.</p>
+          <div class="overlay-buttons">
+            <button id="resumeBtn" class="btn btn-primary" type="button">RESUME</button>
+            <button id="restartFromPauseBtn" class="btn btn-secondary" type="button">RESTART</button>
+            <button id="mapFromPauseBtn" class="btn btn-ghost" type="button">MISSION MAP</button>
+          </div>
+        </div>
+
+        <!-- Game Over Overlay -->
+        <div id="gameOverOverlay" class="overlay-card hidden">
+          <h3 class="danger-text">NODE COMPROMISED</h3>
+          <p id="gameOverReason">Your shield drone lost all integrity before securing the sector.</p>
+          <div class="overlay-buttons">
+            <button id="retryMissionBtn" class="btn btn-primary" type="button">RETRY MISSION</button>
+            <button id="mapFromGameOverBtn" class="btn btn-ghost" type="button">MISSION MAP</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mobile / Touch Controls -->
+      <div id="touchControls" class="touch-controls" aria-label="Touch Controls">
+        <div class="dpad">
+          <button type="button" class="touch-btn dpad-up" data-dir="up">UP</button>
+          <button type="button" class="touch-btn dpad-left" data-dir="left">LEFT</button>
+          <button type="button" class="touch-btn dpad-down" data-dir="down">DOWN</button>
+          <button type="button" class="touch-btn dpad-right" data-dir="right">RIGHT</button>
+        </div>
+        <button type="button" id="touchShieldBtn" class="touch-btn shield-touch-btn">SHIELD</button>
+      </div>
+    </section>
+
+    <!-- SCREEN 4: LEARNING TERMINAL & QUIZ -->
+    <section id="screen-quiz" class="screen" aria-labelledby="quizHeading">
+      <div class="quiz-card">
+        <div class="quiz-header">
+          <span class="eyebrow" id="quizMissionTag">MISSION 02 · LEARNING TERMINAL</span>
+          <h2 id="quizHeading">CRYPTOGRAPHIC VERIFICATION</h2>
+        </div>
+
+        <div class="lesson-box">
+          <h3>FIELD BRIEFING</h3>
+          <p id="quizLessonText"></p>
+        </div>
+
+        <div class="question-block">
+          <p class="question-prompt" id="quizQuestionText"></p>
+          <div id="quizOptions" class="quiz-options"></div>
+        </div>
+
+        <div id="quizFeedback" class="feedback-box hidden">
+          <strong id="feedbackVerdict"></strong>
+          <p id="feedbackExplanation"></p>
+          <button id="proceedToVictoryBtn" class="btn btn-primary" type="button">CONTINUE TO MISSION REPORT</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- SCREEN 5: VICTORY & RESULTS -->
+    <section id="screen-victory" class="screen" aria-labelledby="victoryHeading">
+      <div class="victory-card">
+        <p class="eyebrow">SECTOR SECURED</p>
+        <h2 id="victoryHeading">MISSION COMPLETE</h2>
+        <p id="victoryUnlockText" class="unlock-banner"></p>
+
+        <div class="stats-grid">
+          <div class="stat-tile">
+            <span>MISSION SCORE</span>
+            <strong id="resScore">0</strong>
+          </div>
+          <div class="stat-tile">
+            <span>LIVES REMAINING</span>
+            <strong id="resLives">❤️❤️❤️</strong>
+          </div>
+          <div class="stat-tile">
+            <span>QUIZ ACCURACY</span>
+            <strong id="resQuizStatus">0/1</strong>
+          </div>
+          <div class="stat-tile">
+            <span>CURRENT RANK</span>
+            <strong id="resRank">GUARDIAN</strong>
+          </div>
+        </div>
+
+        <div id="finalReportBox" class="final-report hidden">
+          <h3>FINAL DIGITAL GUARDIAN REPORT</h3>
+          <p>
+            You helped transition the Digital City toward post-quantum resilience: pairing <strong>ML-KEM</strong> for key establishment
+            with <strong>ML-DSA</strong> and <strong>SLH-DSA</strong> for digital signatures, while understanding why fault-tolerant
+            quantum computers pose a future risk to RSA and ECC.
+          </p>
+        </div>
+
+        <div class="overlay-buttons">
+          <button id="nextMissionBtn" class="btn btn-primary" type="button">NEXT MISSION</button>
+          <button id="victoryMapBtn" class="btn btn-ghost" type="button">BACK TO MISSION MAP</button>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <script src="script.js" defer></script>
+</body>
+</html>
