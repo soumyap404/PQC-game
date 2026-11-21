@@ -3,7 +3,7 @@
    ============================================================================ */
 
 document.addEventListener('DOMContentLoaded', () => {
-  const STORAGE_KEY = 'quantumZeroSave_v1';
+  const STORAGE_KEY = 'quantumZeroSave_v2';
 
   function onClick(id, handler) {
     const el = document.getElementById(id);
@@ -23,7 +23,6 @@ document.addEventListener('DOMContentLoaded', () => {
     let musicTimer = null;
     let stepIndex = 0;
 
-    // Driving cyberpunk bassline + arpeggio frequencies (Hz)
     const bassNotes = [110, 110, 130.81, 98, 87.31, 87.31, 98, 110];
     const arpNotes = [440, 523.25, 659.25, 783.99, 659.25, 523.25, 392, 493.88];
 
@@ -131,7 +130,7 @@ document.addEventListener('DOMContentLoaded', () => {
     };
   })();
 
-  // --- Mission & Cryptography Data ---
+  // --- Mission & Cryptography Data (4 Missions; Former Mission 03 Removed) ---
   const MISSIONS = [
     {
       id: 1,
@@ -144,16 +143,16 @@ document.addEventListener('DOMContentLoaded', () => {
       summary: 'Route encrypted key packets between Terminal A and Terminal B while avoiding red interference.',
       objective: 'Deliver 4 encrypted packets between terminals',
       guideTip: 'Touch TERM-A (cyan) to grab a key, then reach TERM-B to deliver it while dodging red projectiles.',
-      lesson: 'Cryptography protects data confidentiality and authenticity. Public keys can be shared openly to lock messages, while private keys stay secret to decrypt or sign. In 2045, legacy public-key channels face future quantum risks—making structured network defense essential.',
+      lesson: 'Data is valuable, but protected data is powerful. Encryption transforms readable information into a secret code, helping keep it safe from unauthorized access as it travels across the digital world.',
       quiz: {
-        question: 'What is the main role of a private key in public-key cryptography?',
+        question: 'What is the main purpose of encryption when sending data from Terminal A to Terminal B?',
         options: [
-          'To be published on a public directory for everyone to copy',
-          'To remain secret with the owner for decryption or digital signing',
-          'To replace all passwords with random numbers permanently'
+          'To make data travel faster',
+          'To protect data from unauthorized access',
+          'To delete the original data'
         ],
         correctIndex: 1,
-        explanation: 'A private key must stay confidential with its owner. Public keys can be shared widely, whereas private keys decrypt data intended for you or generate verifiable digital signatures.'
+        
       }
     },
     {
@@ -167,44 +166,21 @@ document.addEventListener('DOMContentLoaded', () => {
       summary: 'Survive Q-CORE attack waves, use your Space shield, and collect secure data packets.',
       objective: 'Collect 6 packets & survive the timer',
       guideTip: 'Collect green data packets (+10 pts) and tap Space to block incoming red projectiles.',
-      lesson: "A sufficiently powerful, fault-tolerant quantum computer running Shor's algorithm could factor large integers and solve discrete logarithms efficiently—threatening RSA and ECC. Today's noisy quantum hardware cannot do this at scale, and symmetric ciphers like AES-256 are not broken the same way.",
+      lesson: "The future of cybersecurity depends on preparing today. Powerful quantum computers could threaten traditional encryption like RSA and ECC, but Post-Quantum Cryptography is building a stronger shield for tomorrow’s digital world.",
       quiz: {
-        question: 'Why are researchers transitioning away from RSA and ECC toward post-quantum cryptography?',
+        question: 'Why do we need Post-Quantum Cryptography (PQC)?',
         options: [
-          "Shor's algorithm on a future fault-tolerant quantum computer could break RSA and ECC",
-          "Today's quantum computers have already broken all encryption worldwide",
-          'Quantum computers automatically make AES-256 impossible to use'
+          "Future powerful quantum computers could break RSA and ECC.",
+          "Today's quantum computers have already broken all encryption.",
+          'Quantum computers make AES-256 useless.'
         ],
-        correctIndex: 0,
-        explanation: "Shor's algorithm threatens RSA and ECC if a large-scale, fault-tolerant quantum computer is built. Upgrading early protects long-lived data—including against \"harvest now, decrypt later\" collection."
+        correctIndex: 0
+        
       }
     },
     {
       id: 3,
       code: 'MISSION 03',
-      title: 'The Lattice Lab',
-      mode: 'lattice',
-      duration: 90,
-      targetCount: 3,
-      unlockLabel: 'ML-KEM RESEARCH UNLOCKED',
-      summary: 'Navigate a 2D lattice grid across 3 stages where small noise offsets obscure hidden targets.',
-      objective: 'Solve 3 noisy lattice stages',
-      guideTip: 'Add the noise offset to the basis coordinate, select that cell on the 7x7 grid, and click VERIFY COORDINATE.',
-      lesson: 'Learning With Errors (LWE) and Module-LWE build security from lattice geometry plus small random "noise" (errors). Without noise, linear equations can be solved quickly; with small errors added, finding the secret point becomes a hard mathematical problem.',
-      quiz: {
-        question: 'How does adding small "error" (noise) help Learning With Errors (LWE) security?',
-        options: [
-          'It turns otherwise solvable linear relationships into a hard lattice problem',
-          'It makes the encryption key shorter so attackers guess it faster',
-          'It removes the need for any mathematical structure'
-        ],
-        correctIndex: 0,
-        explanation: 'Exact linear systems can be solved efficiently with standard algebra, but introducing controlled noise complicates recovering the hidden secret—forming the core intuition behind LWE and Module-LWE.'
-      }
-    },
-    {
-      id: 4,
-      code: 'MISSION 04',
       title: 'Rebuild the Defense',
       mode: 'strategy',
       duration: 90,
@@ -226,8 +202,8 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     },
     {
-      id: 5,
-      code: 'MISSION 05',
+      id: 4,
+      code: 'MISSION 04',
       title: 'The Last Encryption',
       mode: 'boss',
       duration: 60,
@@ -245,15 +221,15 @@ document.addEventListener('DOMContentLoaded', () => {
           'Relying solely on unpatched legacy RSA keys until 2050'
         ],
         correctIndex: 0,
-        explanation: 'Pairing ML-KEM for key exchange with ML-DSA or SLH-DSA for digital signatures—alongside strong symmetric cryptography—addresses both confidentiality and authenticity in a post-quantum transition.'
+       
       }
     }
   ];
 
   function getRankForScore(score) {
-    if (score >= 1400) return 'DIGITAL GUARDIAN';
-    if (score >= 900) return 'PQC ARCHITECT';
-    if (score >= 450) return 'CIPHER ANALYST';
+    if (score >= 1150) return 'DIGITAL GUARDIAN';
+    if (score >= 750) return 'PQC ARCHITECT';
+    if (score >= 350) return 'CIPHER ANALYST';
     return 'CADET';
   }
 
@@ -274,8 +250,10 @@ document.addEventListener('DOMContentLoaded', () => {
       if (!raw) return defaultSave();
       const parsed = JSON.parse(raw);
       return {
-        highestUnlocked: Number(parsed.highestUnlocked) || 1,
-        completedMissions: Array.isArray(parsed.completedMissions) ? parsed.completedMissions : [],
+        highestUnlocked: Math.min(MISSIONS.length, Number(parsed.highestUnlocked) || 1),
+        completedMissions: Array.isArray(parsed.completedMissions)
+          ? parsed.completedMissions.filter(id => id >= 1 && id <= MISSIONS.length)
+          : [],
         score: Number(parsed.score) || 0,
         soundEnabled: parsed.soundEnabled !== undefined ? Boolean(parsed.soundEnabled) : true,
         musicEnabled: parsed.musicEnabled !== undefined ? Boolean(parsed.musicEnabled) : true
@@ -405,10 +383,7 @@ document.addEventListener('DOMContentLoaded', () => {
         fireTimer: 1.4,
         dirY: 1
       },
-      spawnTimer: 1.1,
-      latticeStage: 0,
-      latticeTarget: null,
-      latticeSelected: null
+      spawnTimer: 1.1
     };
 
     const titleEl = document.getElementById('hudMissionTitle');
@@ -420,10 +395,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (mission.mode === 'tutorial' || mission.mode === 'arcade' || mission.mode === 'boss') {
       seedPackets();
-    }
-
-    if (mission.mode === 'lattice') {
-      setupLatticeStage(0);
     } else if (mission.mode === 'strategy') {
       setupStrategyPuzzle();
     }
@@ -514,93 +485,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (timerEl) timerEl.textContent = `${mins}:${rem}`;
   }
 
-  // --- Puzzle Mode 3: Lattice Lab ---
-  const LATTICE_STAGES = [
-    { base: [2, 1], noise: [0, 0], hint: 'Stage 1: Pure basis vector (2, 1) — zero noise.' },
-    { base: [4, 2], noise: [1, 0], hint: 'Stage 2: Basis (4, 2) + small noise (+1, 0) = (5, 2).' },
-    { base: [3, 4], noise: [-1, 1], hint: 'Stage 3: Basis (3, 4) + noise (-1, +1) = (2, 5).' }
-  ];
-
-  function setupLatticeStage(stageIdx) {
-    session.latticeStage = stageIdx;
-    const st = LATTICE_STAGES[stageIdx];
-    session.latticeTarget = {
-      x: Math.max(0, Math.min(6, st.base[0] + st.noise[0])),
-      y: Math.max(0, Math.min(6, st.base[1] + st.noise[1]))
-    };
-    session.latticeSelected = null;
-    renderLatticeOverlay();
-  }
-
-  function renderLatticeOverlay() {
-    if (!puzzleOverlay) return;
-    const st = LATTICE_STAGES[session.latticeStage];
-    puzzleOverlay.classList.remove('hidden');
-    puzzleOverlay.innerHTML = `
-      <h3>LATTICE LAB — STAGE ${session.latticeStage + 1} OF ${LATTICE_STAGES.length}</h3>
-      <p>${st.hint} Click the grid point that matches the noisy lattice output.</p>
-      <div class="lattice-grid" id="latticeGrid"></div>
-      <div class="overlay-buttons">
-        <button id="verifyLatticeBtn" class="btn btn-primary btn-small" type="button">VERIFY COORDINATE</button>
-      </div>
-      <p id="latticeMsg" style="margin-top:10px;color:#00f0ff;"></p>
-    `;
-
-    const gridEl = document.getElementById('latticeGrid');
-    for (let row = 0; row < 7; row++) {
-      const yVal = 6 - row;
-      for (let xVal = 0; xVal < 7; xVal++) {
-        const cell = document.createElement('button');
-        cell.type = 'button';
-        cell.className = 'lattice-cell';
-        cell.textContent = `${xVal},${yVal}`;
-        if (xVal === st.base[0] && yVal === st.base[1]) {
-          cell.classList.add('hinted');
-          cell.title = 'Un-noised basis point';
-        }
-        if (session.latticeSelected && session.latticeSelected.x === xVal && session.latticeSelected.y === yVal) {
-          cell.classList.add('selected');
-        }
-        cell.addEventListener('click', () => {
-          session.latticeSelected = { x: xVal, y: yVal };
-          renderLatticeOverlay();
-        });
-        gridEl.appendChild(cell);
-      }
-    }
-
-    onClick('verifyLatticeBtn', () => {
-      const msgEl = document.getElementById('latticeMsg');
-      if (!session.latticeSelected) {
-        if (msgEl) msgEl.textContent = 'Select a coordinate cell first.';
-        return;
-      }
-      const { x, y } = session.latticeSelected;
-      if (x === session.latticeTarget.x && y === session.latticeTarget.y) {
-        AudioEngine.pickup();
-        session.collected += 1;
-        session.missionScore += 60;
-        syncArenaHud();
-        if (session.latticeStage + 1 < LATTICE_STAGES.length) {
-          setupLatticeStage(session.latticeStage + 1);
-        } else {
-          completeGameplayPhase();
-        }
-      } else {
-        AudioEngine.hit();
-        session.lives -= 1;
-        session.tookDamage = true;
-        syncArenaHud();
-        if (session.lives <= 0) {
-          triggerGameOver('Too many noisy lattice miscalculations.');
-        } else if (msgEl) {
-          msgEl.textContent = `Off target (${x},${y}). Remember: add the noise offset to the basis point.`;
-        }
-      }
-    });
-  }
-
-  // --- Puzzle Mode 4: Strategy & PQC Algorithm Matching ---
+  // --- Strategy & PQC Algorithm Matching ---
   function setupStrategyPuzzle() {
     if (!puzzleOverlay) return;
     puzzleOverlay.classList.remove('hidden');
@@ -690,7 +575,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function updateSession(dt) {
     const mode = session.mission.mode;
-    if (mode === 'lattice' || mode === 'strategy') return;
+    if (mode === 'strategy') return;
 
     session.timeLeft -= dt;
     if (session.timeLeft <= 0) {
