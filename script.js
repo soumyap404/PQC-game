@@ -1,6 +1,6 @@
-/* ============================================================================
+/* =
    QUANTUM ZERO: The Last Encryption — Game Engine & PQC Curriculum
-   ============================================================================ */
+*/
 
 document.addEventListener('DOMContentLoaded', () => {
   const STORAGE_KEY = 'quantumZeroSave_v2';
@@ -15,7 +15,6 @@ document.addEventListener('DOMContentLoaded', () => {
     return count > 0 ? '❤️'.repeat(count) : '💔';
   }
 
-  // --- Sound & Synth Music Engine (Web Audio API, no external files required) ---
   const AudioEngine = (() => {
     let ctx = null;
     let sfxEnabled = true;
@@ -36,7 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
           ctx.resume().catch(() => {});
         }
       } catch {
-        // Audio unsupported
+
       }
     }
 
@@ -64,7 +63,7 @@ document.addEventListener('DOMContentLoaded', () => {
         osc.start(now);
         osc.stop(now + duration);
       } catch {
-        // Ignore tone errors
+ 
       }
     }
 
@@ -130,7 +129,6 @@ document.addEventListener('DOMContentLoaded', () => {
     };
   })();
 
-  // --- Mission & Cryptography Data (4 Missions; Former Mission 03 Removed) ---
   const MISSIONS = [
     {
       id: 1,
@@ -233,7 +231,7 @@ document.addEventListener('DOMContentLoaded', () => {
     return 'CADET';
   }
 
-  // --- Save State ---
+
   function defaultSave() {
     return {
       highestUnlocked: 1,
@@ -269,11 +267,10 @@ document.addEventListener('DOMContentLoaded', () => {
     try {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(saveData));
     } catch {
-      // Ignore storage errors
+
     }
   }
 
-  // --- DOM References ---
   const screens = {
     menu: document.getElementById('screen-menu'),
     map: document.getElementById('screen-map'),
@@ -316,7 +313,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (cityIntegrityText) cityIntegrityText.textContent = `${integrity}%`;
   }
 
-  // --- Active Mission Session State ---
+
   let session = null;
   let animFrameId = null;
   let lastFrameTime = 0;
@@ -485,7 +482,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (timerEl) timerEl.textContent = `${mins}:${rem}`;
   }
 
-  // --- Strategy & PQC Algorithm Matching ---
+
   function setupStrategyPuzzle() {
     if (!puzzleOverlay) return;
     puzzleOverlay.classList.remove('hidden');
@@ -559,7 +556,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // --- Main Loop & Action Modes ---
   function gameLoop(now) {
     if (!session || session.ended) return;
     const dt = Math.min(0.05, (now - lastFrameTime) / 1000);
@@ -820,7 +816,7 @@ document.addEventListener('DOMContentLoaded', () => {
     openQuizScreen();
   }
 
-  // --- Screen 4: Learning Terminal & Quiz ---
+ 
   function openQuizScreen() {
     const m = session.mission;
     const tagEl = document.getElementById('quizMissionTag');
@@ -872,7 +868,7 @@ document.addEventListener('DOMContentLoaded', () => {
     showScreen('quiz');
   }
 
-  // --- Screen 5: Victory & Results ---
+
   function openVictoryScreen() {
     const m = session.mission;
     saveData.score += session.missionScore;
@@ -908,7 +904,7 @@ document.addEventListener('DOMContentLoaded', () => {
     showScreen('victory');
   }
 
-  // --- Mission Map Renderer ---
+
   function renderMissionMap() {
     if (!missionMapGrid) return;
     missionMapGrid.innerHTML = '';
@@ -947,7 +943,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // --- Input Listeners ---
+
   window.addEventListener('pointerdown', () => {
     AudioEngine.unlockAudio();
   }, { once: true });
@@ -985,7 +981,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // Touch controls
+
   document.querySelectorAll('.dpad .touch-btn').forEach(btn => {
     const dir = btn.dataset.dir;
     const setDir = val => { if (dir && dir in keys) keys[dir] = val; };
@@ -1000,7 +996,6 @@ document.addEventListener('DOMContentLoaded', () => {
     touchShieldBtn.addEventListener('pointerup', () => { keys.shield = false; });
   }
 
-  // UI Buttons
   onClick('brandHomeBtn', () => {
     cancelAnimationFrame(animFrameId);
     showScreen('menu');
@@ -1099,7 +1094,6 @@ document.addEventListener('DOMContentLoaded', () => {
     showScreen('map');
   });
 
-  // --- Boot ---
   AudioEngine.setSfxEnabled(saveData.soundEnabled);
   AudioEngine.setMusicEnabled(saveData.musicEnabled);
   updateTopHud();
