@@ -31,7 +31,7 @@ html, body {
   -webkit-tap-highlight-color: transparent;
 }
 
-/* Animated Cyber Grid & Scanlines */
+
 .bg-grid {
   position: fixed;
   inset: 0;
@@ -70,8 +70,6 @@ html, body {
   margin: 0 auto;
   padding: 16px 20px 36px;
 }
-
-/* Top Bar */
 .top-bar {
   display: flex;
   flex-wrap: wrap;
@@ -144,7 +142,7 @@ html, body {
 .pill-cyan strong { color: var(--cyan); font-family: var(--font-display); }
 .pill-violet strong { color: var(--green); font-family: var(--font-display); }
 
-/* Screens */
+
 .screen {
   display: none;
   animation: fadeIn 0.25s ease;
@@ -173,7 +171,7 @@ h1, h2, h3 {
   letter-spacing: 0.04em;
 }
 
-/* Buttons */
+
 .btn {
   font-family: var(--font-display);
   font-weight: 700;
@@ -235,7 +233,7 @@ h1, h2, h3 {
   cursor: pointer;
 }
 
-/* Main Menu */
+
 .hero-card {
   background: var(--bg-panel);
   border: 1px solid var(--border-glow);
@@ -337,7 +335,7 @@ kbd {
   font-size: 0.75rem;
 }
 
-/* Mission Map */
+
 .screen-header {
   display: flex;
   flex-wrap: wrap;
@@ -426,7 +424,6 @@ kbd {
   color: #d8b4fe;
 }
 
-/* Gameplay Arena */
 .hud-bar {
   display: flex;
   flex-wrap: wrap;
@@ -473,7 +470,7 @@ kbd {
 .hud-box span { color: var(--text-muted); }
 .hud-box strong { font-family: var(--font-display); color: var(--cyan); }
 
-/* In-Game Instructions Box */
+
 .arena-instructions {
   background: rgba(11, 18, 38, 0.92);
   border: 1px solid rgba(157, 78, 221, 0.45);
@@ -523,7 +520,7 @@ kbd {
   aspect-ratio: 900 / 500;
 }
 
-/* Puzzle & Strategy Overlay (Missions 03 & 04) */
+
 .puzzle-panel {
   position: absolute;
   inset: 0;
@@ -611,7 +608,7 @@ kbd {
   font-family: var(--font-body);
 }
 
-/* Overlays */
+
 .overlay-card {
   position: absolute;
   inset: 0;
@@ -637,7 +634,6 @@ kbd {
   gap: 10px;
 }
 
-/* Touch Controls */
 .touch-controls {
   display: none;
   justify-content: space-between;
@@ -679,7 +675,6 @@ kbd {
   color: #f3e8ff;
 }
 
-/* Quiz & Victory */
 .quiz-card, .victory-card {
   background: var(--bg-panel);
   border: 1px solid var(--border-glow);
